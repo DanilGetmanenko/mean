@@ -9,7 +9,7 @@
   PostsService.$inject = ['$resource'];
 
   function PostsService($resource) {
-    return $resource('api/posts/:postId', {
+    return $resource('/api/posts/:postId', {
       postId: '@_id'
     }, {
       update: {
