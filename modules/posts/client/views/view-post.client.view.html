@@ -40,7 +40,8 @@
 
 <section>
     <h3>Comments</h3>
-    <div ng-repeat="comment in vm.post.comments" style="border: 1px solid black; border-radius: 6px; padding: 15px;">
+    <div ng-repeat="comment in vm.post.comments" style="border: 1px solid black; border-radius: 6px; padding: 15px;">       
          <span ng-bind="comment.comment"></span>
+         <button type="button" ng-click="vm.deleteComment(comment._id)" class="btn btn-default">delete</button>  
     </div>
   </section>

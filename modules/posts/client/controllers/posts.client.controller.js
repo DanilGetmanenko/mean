@@ -20,6 +20,7 @@
     
     vm.comment = null;
     vm.createComment = createComment;
+    vm.deleteComment = deleteComment;
 
     // Remove existing Post
     function remove() {
@@ -59,6 +60,32 @@
         vm.post.$update(successCallback, errorCallback);
       }
 
+      function successCallback(res) {
+        $state.go('posts.view', {
+          postId: res._id
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error = res.data.message;
+      }
+    }
+    
+    function deleteComment(_id) {
+      var commentIndex = -1;
+      var comment= vm.post.comments.find(function(v, i){
+        if (v._id==_id){
+          commentIndex=i;
+         return true;
+        }
+      })
+
+      if (comment){
+        vm.post.comments.splice(commentIndex, 1);
+        vm.post.$update(successCallback, errorCallback);
+
+      }
+      
       function successCallback(res) {
         $state.go('posts.view', {
           postId: res._id
