@@ -23,7 +23,14 @@ var PostSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+  comments:[{
+    comment:{type:String},
+    commentator: {
+      type: Schema.ObjectId,
+      ref: 'User'
+    }
+  }]
 });
 
 mongoose.model('Post', PostSchema);
